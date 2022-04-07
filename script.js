@@ -71,3 +71,25 @@ for (let i = 0; i < ourTeam.length; i++){
                                     </div>`
 }
 })();
+
+// permettiamo all'utente di inserire un nuovo membro del team. Inizio creando un nuovo oggetto che prende i dati dal form
+
+let addMemberButtonElm = document.getElementById('addMemberButton');
+
+function generateMember(){
+    let imageElm = document.getElementById('image');
+    let imageValue = imageElm.value;
+    let nameElm = document.getElementById('name');
+    let nameValue = nameElm.value;
+    let roleElm = document.getElementById('role');
+    let roleValue = roleElm.value;
+
+    const newMember = {
+        immagine: imageValue,
+        nomeCognome: nameValue,
+        ruolo: roleValue
+    }
+    console.log(newMember)
+}
+
+addMemberButtonElm.addEventListener('click', generateMember)

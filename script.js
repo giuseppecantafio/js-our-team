@@ -50,7 +50,7 @@ console.log(ourTeam);
 
 // mi vado a ciclare l'array per tirarmi fuori gli oggetti e vado ad appendere l'html
 
-(function (){
+function ourMembers(){
     let teamContainerElm = document.querySelector('.team-container');
     teamContainerElm.innerHTML = '';
 for (let i = 0; i < ourTeam.length; i++){
@@ -70,13 +70,15 @@ for (let i = 0; i < ourTeam.length; i++){
                                         </div>
                                     </div>`
 }
-})();
+};
+ourMembers();
 
 // permettiamo all'utente di inserire un nuovo membro del team. Inizio creando un nuovo oggetto che prende i dati dal form
 
 let addMemberButtonElm = document.getElementById('addMemberButton');
 
 function generateMember(){
+
     let imageElm = document.getElementById('image');
     let imageValue = imageElm.value;
     let nameElm = document.getElementById('name');
@@ -85,11 +87,14 @@ function generateMember(){
     let roleValue = roleElm.value;
 
     const newMember = {
-        immagine: imageValue,
+        immagine: `img/${imageValue}.jpg`,
         nomeCognome: nameValue,
         ruolo: roleValue
     }
-    console.log(newMember)
+    
+    ourTeam.push(newMember);
+    ourMembers();
+    
 }
 
 addMemberButtonElm.addEventListener('click', generateMember)

@@ -1,18 +1,5 @@
-/* <div class="team-card">
-            <div class="card-image">
-              <img
-                src="img/wayne-barnett-founder-ceo.jpg"
-                alt="Wayne Barnett"
-              />
-            </div>
-            <div class="card-text">
-              <h3>Wayne Barnett</h3>
-              <p>Founder & CEO</p>
-            </div>
-          </div>
-*/
 
-// innanzitutto, mi creo un array contenente gli oggetti, ovvero i membri del team
+// innanzitutto, mi creo un array contenente gli oggetti, ovvero i membri del team e setto variabili globali
 
 const ourTeam = [
     {
@@ -46,12 +33,12 @@ const ourTeam = [
         ruolo: 'Graphic Designer'
     },
 ];
-console.log(ourTeam);
+
+let teamContainerElm = document.querySelector('.team-container');
 
 // mi vado a ciclare l'array per tirarmi fuori gli oggetti e vado ad appendere l'html
 
-function ourMembers(){
-    let teamContainerElm = document.querySelector('.team-container');
+(function (){
     teamContainerElm.innerHTML = '';
 for (let i = 0; i < ourTeam.length; i++){
     teamContainerElm.innerHTML += `<div class="team-card">
@@ -70,10 +57,9 @@ for (let i = 0; i < ourTeam.length; i++){
                                         </div>
                                     </div>`
 }
-};
-ourMembers();
+})();
 
-// permettiamo all'utente di inserire un nuovo membro del team. Inizio creando un nuovo oggetto che prende i dati dal form
+// permettiamo all'utente di inserire un nuovo membro del team. Prendo i valori di input e creo una nuova card
 
 let addMemberButtonElm = document.getElementById('addMemberButton');
 
@@ -92,8 +78,21 @@ function generateMember(){
         ruolo: roleValue
     }
     
-    ourTeam.push(newMember);
-    ourMembers();
+    teamContainerElm.innerHTML += `<div class="team-card">
+                                        <div class="card-image">
+                                            <img src="${newMember.immagine}"
+                                                 alt="${newMember.nomeCognome}"
+                                            />
+                                        </div>
+                                        <div class="card-text">
+                                        <h3>
+                                        ${newMember.nomeCognome}
+                                        </h3>
+                                        <p>
+                                        ${newMember.ruolo}
+                                        </p>
+                                        </div>
+                                    </div>`
     
 }
 
